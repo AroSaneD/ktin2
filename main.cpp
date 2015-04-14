@@ -1,13 +1,4 @@
-#include <iostream>
-#include <stdlib.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-
+#include "SocketObject.h"
 
 
 using namespace std;
@@ -20,42 +11,53 @@ to read up on:
 server:
     hostinger.lt
 */
+
+bool login(SocketObject serverSocket){
+    string messageFromServer;
+
+
+    if(serverSocket.connectToServer() < 0){
+        cout << "Connection failed";
+        return -1;
+    }
+
+    //Wait for connection verification (Code 220)
+    if(serverSocket.receiveResponse(messageFromServer) < 0){
+        cout << "An error occurred while receiving the respoonse";
+        return -1;
+    }
+
+    cout << messageFromServer << endl;
+
+    //Send user name and then wait for its verification
+    serverSocket.sendMessage("USER u363531489\nPASS aiVn1EfacW\n");
+    if(serverSocket.receiveResponse(messageFromServer) < 0){
+        cout << "An error occurred while receiving the response";
+        return -1;
+    }
+
+    cout << messageFromServer << endl;
+
+    //Send password and then wait for its verification
+    //serverSocket.sendMessage("PASS memftl6TmE\n"); //Kazkodel serveris nepriima slaptazodzio kai siunciu dvi uzklausaus
+    if(serverSocket.receiveResponse(messageFromServer) < 0){
+        cout << "An error occurred while receiving the response";
+        return -1;
+    }
+
+    cout << messageFromServer << endl;
+
+    return 1;
+}
+
 int main()
 {
-    int serverSocket;
-    sockaddr_in server;
-    char messageFromServer[512];
-    char messageToServer[512];
+
+    SocketObject serverSocket = SocketObject("21", "31.170.164.222");
+
+    login(serverSocket);
 
 
-
-    if((serverSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0){
-        //handle errors
-        cout << "Error creating socket" << endl;
-        return -1;
-    }
-
-    memset(&server, 0, sizeof(server));
-    memset(&messageFromServer, 0, sizeof(messageFromServer));
-
-    server.sin_family = AF_INET;
-    server.sin_port = htons(atoi("21"));
-    server.sin_addr.s_addr = inet_addr("31.170.164.62"); //add adress of ftp server
-
-
-
-    if(connect(serverSocket, (struct sockaddr *) &server, sizeof(server) ) < 0){
-        //handle errors
-        cout << "Error while connecting to the server" << endl;
-        return -1;
-    }
-
-
-    int messageLength = recv(serverSocket, messageFromServer, sizeof(messageFromServer), 0);
-
-    if(messageLength > 0){
-        cout << messageFromServer << endl;
-    }
 
 
 

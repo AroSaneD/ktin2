@@ -1,5 +1,8 @@
 # depslib dependency file v1.0
-1428997005 source:/home/god/Desktop/Code/University/ktin2/main.cpp
+1429045985 source:/home/god/Desktop/Code/University/ktin2/main.cpp
+	"SocketObject.h"
+
+1429044380 /home/god/Desktop/Code/University/ktin2/SocketObject.h
 	<iostream>
 	<stdlib.h>
 	<sys/socket.h>
@@ -9,4 +12,7 @@
 	<unistd.h>
 	<stdio.h>
 	<string.h>
+
+1429045758 source:/home/god/Desktop/Code/University/ktin2/SocketObject.cpp
+	"SocketObject.h"
 
