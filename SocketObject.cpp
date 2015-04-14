@@ -13,6 +13,9 @@ SocketObject::SocketObject(string port, string address){
     server.sin_family = AF_INET;
     server.sin_port = htons(atoi(port.c_str()));
     server.sin_addr.s_addr = inet_addr(address.c_str()); //add adress of ftp server
+}
+
+SocketObject::SocketObject(){
 
 }
 
@@ -33,8 +36,6 @@ void SocketObject::sendMessage(string message){
 
     memset(&messageToServer, 0, sizeof(messageToServer));
     strcpy(messageToServer, message.c_str());
-
-    cout << "Message sent: " << messageToServer << endl;
 
     send(serverSocket, messageToServer, sizeof(messageToServer), 0);
 }

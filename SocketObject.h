@@ -19,11 +19,16 @@ using namespace std;
 
 class SocketObject {
 public:
+    SocketObject(string port, string address);
+    SocketObject();
+
     void sendMessage(string message);
     int receiveResponse(string &response);
-    SocketObject(string port, string address);
     int connectToServer();
+
 protected:
+
+private:
     int serverSocket;
     sockaddr_in server;
 };
