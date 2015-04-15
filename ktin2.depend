@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1429050571 source:/home/god/Desktop/Code/University/ktin2/main.cpp
+1429079773 source:/home/god/Desktop/Code/University/ktin2/main.cpp
 	"FtpClient.h"
 
-1429049942 /home/god/Desktop/Code/University/ktin2/SocketObject.h
+1429068973 /home/god/Desktop/Code/University/ktin2/SocketObject.h
 	<iostream>
 	<stdlib.h>
 	<sys/socket.h>
@@ -13,12 +13,12 @@
 	<stdio.h>
 	<string.h>
 
-1429050603 source:/home/god/Desktop/Code/University/ktin2/SocketObject.cpp
+1429085119 source:/home/god/Desktop/Code/University/ktin2/SocketObject.cpp
 	"SocketObject.h"
 
-1429050056 source:/home/god/Desktop/Code/University/ktin2/FtpClient.cpp
+1429085043 source:/home/god/Desktop/Code/University/ktin2/FtpClient.cpp
 	"FtpClient.h"
 
-1429049942 /home/god/Desktop/Code/University/ktin2/FtpClient.h
+1429079354 /home/god/Desktop/Code/University/ktin2/FtpClient.h
 	"SocketObject.h"
 

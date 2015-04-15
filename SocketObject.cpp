@@ -32,12 +32,22 @@ int SocketObject::connectToServer(){
 
 
 void SocketObject::sendMessage(string message){
+    //char* messageToServer = new char[512];
+
     char messageToServer[512];
-
     memset(&messageToServer, 0, sizeof(messageToServer));
-    strcpy(messageToServer, message.c_str());
 
-    send(serverSocket, messageToServer, sizeof(messageToServer), 0);
+    //strcpy(messageToServer, message.c_str());
+
+
+    strncpy(messageToServer, message.c_str(), sizeof(messageToServer));
+    messageToServer[sizeof(messageToServer) - 1] = 0;
+
+    cout << "Message sent: " << messageToServer << endl;
+    send(serverSocket, messageToServer, strlen(messageToServer), 0);
+
+    //delete[] messageToServer;
+    //send(serverSocket, message, message.length(), 0);
 }
 
 int SocketObject::receiveResponse(string &response){
