@@ -33,21 +33,28 @@ int SocketObject::connectToServer(){
 
 void SocketObject::sendMessage(string message){
     //char* messageToServer = new char[512];
+    //size_t alloc = message.length();
 
-    char messageToServer[512];
+
+    //char* messageToServer = (char*) malloc(alloc + 1);
+
+    char* messageToServer[512];
     memset(&messageToServer, 0, sizeof(messageToServer));
-
     //strcpy(messageToServer, message.c_str());
 
 
-    strncpy(messageToServer, message.c_str(), sizeof(messageToServer));
-    messageToServer[sizeof(messageToServer) - 1] = 0;
+    //strncpy(messageToServer, message.c_str(), sizeof(messageToServer));
+    //messageToServer[sizeof(messageToServer) - 1] = 0;
 
-    cout << "Message sent: " << messageToServer << endl;
-    send(serverSocket, messageToServer, strlen(messageToServer), 0);
+    //memcpy(messageToServer, message.c_str(), alloc+1);
+
+    cout << "Message sent: " << message << endl;
+    send(serverSocket, message.c_str(), message.length(), 0);
 
     //delete[] messageToServer;
     //send(serverSocket, message, message.length(), 0);
+
+    //free(messageToServer);
 }
 
 int SocketObject::receiveResponse(string &response){

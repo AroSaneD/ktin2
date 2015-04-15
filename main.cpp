@@ -18,7 +18,9 @@ int main()
 {
     FtpClient ftpClient = FtpClient("21", "31.170.164.222");
     ftpClient.login();
-    ftpClient.listCurrentDirectory();
+    //ftpClient.listCurrentDirectory();
+    ftpClient.changeDirectory("lt");
+    ftpClient.exit();
 
 
 

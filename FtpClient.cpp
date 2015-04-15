@@ -29,7 +29,7 @@ bool FtpClient::login(){
     cout << messageFromServer << endl;
 
     //Send user name and then wait for its verification
-    serverSocket.sendMessage("USER u363531489\r\n");
+    serverSocket.sendMessage("USER u363531489\n");
     if(serverSocket.receiveResponse(messageFromServer) < 0){
         responeError();
         return false;
@@ -38,14 +38,13 @@ bool FtpClient::login(){
     cout << messageFromServer << endl;
 
     //Send password and then wait for its verification
-    serverSocket.sendMessage("PASS memftl6TmE\n"); //Kazkodel serveris nepriima slaptazodzio kai siunciu dvi uzklausaus
+    serverSocket.sendMessage("PASS L9XO8VBU82\n"); //Kazkodel serveris nepriima slaptazodzio kai siunciu dvi uzklausaus
     if(serverSocket.receiveResponse(messageFromServer) < 0){
         responeError();
         return false;
     }
 
     cout << messageFromServer << endl;
-
     return true;
 }
 
@@ -60,4 +59,32 @@ bool FtpClient::listCurrentDirectory(){
     }
 
     cout << messageFromServer << endl;
+    return true;
+}
+
+bool FtpClient::changeDirectory(string directory){
+    string messageFromServer;
+
+
+    serverSocket.sendMessage("CWD " + directory + "\n");
+    if(serverSocket.receiveResponse(messageFromServer) < 0){
+        responeError();
+        return false;
+    }
+
+    cout << messageFromServer << endl;
+    return true;
+}
+
+bool FtpClient::exit(){
+    string messageFromServer;
+
+    serverSocket.sendMessage("QUIT \n");
+    if(serverSocket.receiveResponse(messageFromServer) < 0){
+        responeError();
+        return false;
+    }
+
+    cout << messageFromServer << endl;
+    return true;
 }
