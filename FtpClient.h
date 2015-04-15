@@ -19,10 +19,10 @@
 class FtpClient{
 public:
     FtpClient(string port, string address);
-    bool login(); //Commands used: USER & PASS
-    bool listCurrentDirectory();
-    bool changeDirectory(string directory);
-    bool exit();
+    bool login();                               //USER & PASS
+    bool listCurrentDirectory();                //LIST
+    bool changeDirectory(string directory);     //CWD
+    bool exit();                                //QUIT
 
 protected:
 
