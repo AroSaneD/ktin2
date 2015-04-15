@@ -22,6 +22,8 @@ public:
     bool login();                               //USER & PASS
     bool listCurrentDirectory();                //LIST
     bool changeDirectory(string directory);     //CWD
+    bool uploadFile(string fileName);           //PASV & STOR
+    bool getFile(string fileName);
     bool exit();                                //QUIT
 
 protected:
@@ -30,5 +32,13 @@ private:
     SocketObject serverSocket;
 
 };
+
+/*
+    server responses:
+        331 - user verified, need pass
+        230 - Password confirmed
+        425 - No data connections (list)
+        250 - Successful directory change (cwd)
+*/
 
 #endif // FTPCLIENT_H
